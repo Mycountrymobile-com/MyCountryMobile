@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Country Mobile - AI-Powered Telecom Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA; /* Off-white base */
+            color: #1E293B; /* Dark Slate Blue for text */
+            overflow-x: hidden;
+        }
+
+        /* Gradient Definitions */
+        .gradient-blue-primary {
+            background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%); /* Blue-500 to Blue-400 */
+        }
+        .gradient-blue-secondary {
+            background: linear-gradient(135deg, #1D4ED8 0%, #3B82F6 100%); /* Blue-700 to Blue-500 */
+        }
+        .gradient-blue-subtle {
+            background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%); /* Blue-50 to Blue-100 */
+        }
+        .text-gradient-blue {
+            background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        /* Button Styling */
+        .btn-gradient-primary {
+            background: linear-gradient(to right, #2563EB, #3B82F6); /* Blue-600 to Blue-500 */
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        .btn-gradient-primary:hover {
+            background: linear-gradient(to right, #1D4ED8, #2563EB); /* Darker blue on hover */
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(29, 78, 216, 0.4);
+        }
+        .btn-outline-primary {
+            border-color: #3B82F6;
+            color: #3B82F6;
+            transition: all 0.3s ease-in-out;
+        }
+        .btn-outline-primary:hover {
+            background-color: #DBEAFE; /* Light blue bg */
+            color: #1D4ED8; /* Darker blue text */
+        }
+
+        /* Header Styling */
+        header {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(248, 249, 250, 0.85); /* Semi-transparent Off-white */
+            border-bottom: 1px solid #E5E7EB; /* Light gray border */
+        }
+        #mobile-menu {
+            background-color: rgba(248, 249, 250, 0.98); /* Slightly more opaque for readability */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 60%, #BFDBFE 100%); /* Deep Blue to Light Blue gradient */
+        }
+        .hero-dashboard-image-container {
+            perspective: 1500px;
+        }
+        .hero-dashboard-image { /* Applied to both img and video now */
+            width: 100%; /* Ensure video takes full width of container */
+            height: auto; /* Maintain aspect ratio */
+            max-width: 100%; 
+            border-radius: 1.25rem; /* rounded-2xl */
+            box-shadow: 0 20px 50px rgba(0, 30, 80, 0.3);
+            transform: rotateX(10deg) rotateY(-10deg) translateZ(50px);
+            transition: transform 0.5s ease-out;
+            object-fit: cover; /* Ensures video covers the area, might crop */
+        }
+        .hero-dashboard-image-container:hover .hero-dashboard-image {
+            transform: rotateX(0deg) rotateY(0deg) translateZ(0px) scale(1.02);
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-600 { animation-delay: 0.6s; }
+        .delay-800 { animation-delay: 0.8s; } /* New delay for new sections */
+        .delay-1000 { animation-delay: 1.0s; } /* New delay for new sections */
+        .delay-1200 { animation-delay: 1.2s; } /* New delay for new sections */
+
+
+        /* Abstract Background Elements */
+        .abstract-shape {
+            position: fixed; 
+            border-radius: 50%;
+            opacity: 0.05; 
+            filter: blur(100px); 
+            z-index: -1;
+            transition: transform 0.5s ease-out;
+        }
+        .shape-1 { background: #60A5FA; width: 400px; height: 400px; top: -150px; left: -150px; }
+        .shape-2 { background: #3B82F6; width: 300px; height: 300px; bottom: -100px; right: -100px; }
+        .shape-3 { background: #1D4ED8; width: 350px; height: 350px; top: 30%; right: -10%; }
+        .shape-4 { background: #93C5FD; width: 250px; height: 250px; bottom: 20%; left: 5%; }
+
+        /* Feature Section */
+        .feature-card {
+            background-color: #FFFFFF;
+            border: 1px solid #E5E7EB; 
+            border-radius: 1rem; 
+            padding: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+        }
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.15); 
+            border-color: #93C5FD; 
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            width: 4rem;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+         .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+        }
+
+        /* Testimonial Carousel */
+        .testimonial-carousel-container {
+            overflow: hidden;
+            position: relative;
+        }
+        .testimonial-track {
+            display: flex;
+            animation: scroll-testimonials 45s linear infinite;
+        }
+        .testimonial-card {
+            flex: 0 0 auto;
+            width: 320px; 
+            margin-right: 2rem;
+            background: #FFFFFF;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+        }
+        @keyframes scroll-testimonials {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-352px * 5)); } 
+        }
+        .testimonial-carousel-container:hover .testimonial-track {
+            animation-play-state: paused;
+        }
+
+        /* Accordion (FAQ) Styles */
+        .accordion-item {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid #E5E7EB;
+            overflow: hidden;
+        }
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: #1E3A8A; 
+            transition: background-color 0.3s ease;
+        }
+        .accordion-header:hover {
+            background-color: #EFF6FF; 
+        }
+        .accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+            color: #475569; 
+            border-top: 1px solid transparent; 
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 300px; 
+            padding-top: 1rem;
+            padding-bottom: 1.5rem;
+            border-top-color: #DBEAFE; 
+        }
+        .accordion-icon {
+            transition: transform 0.3s ease;
+            color: #3B82F6; 
+        }
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #0F172A; 
+            color: #94A3B8; 
+            border-top: 4px solid #2563EB; 
+        }
+        footer a:hover {
+            color: #F8F9FA; 
+        }
+        footer .footer-title {
+            color: #E2E8F0; 
+        }
+
+        /* General Section Styling */
+        section {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+        @media (min-width: 768px) {
+            section {
+                padding-top: 6rem;
+                padding-bottom: 6rem;
+            }
+        }
+        .section-title {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 800; /* extrabold */
+            margin-bottom: 1.5rem; /* Reduced from 3rem */
+            color: #1E3A8A; 
+        }
+        .section-subtitle {
+            font-size: 1.125rem; /* text-lg */
+            color: #4B5563; 
+            max-width: 70ch; /* Increased slightly */
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 3rem; 
+        }
+
+        /* STYLES FOR NEW SECTIONS */
+
+        /* How Our AI Works Section */
+        .tech-pillar-card {
+            background-color: #FFFFFF;
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid #E0E7FF; /* Lighter blue border */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease-in-out;
+            opacity: 0; /* For animation */
+        }
+        .tech-pillar-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.15);
+            border-color: #A5B4FC; /* Indigo-300 */
+        }
+        .tech-pillar-icon-container {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        .tech-pillar-card:hover .tech-pillar-icon-container {
+            transform: rotate(15deg) scale(1.1);
+        }
+        .tech-pillar-icon-container i {
+            font-size: 2.5rem;
+        }
+
+        /* Real-World Applications Section */
+        .application-card {
+            background: #fff;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Elastic transition */
+            border: 1px solid #E5E7EB;
+            opacity: 0; /* For animation */
+        }
+        .application-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 18px 35px rgba(30, 58, 138, 0.12); /* Darker blue shadow */
+        }
+        .application-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .application-card:hover .application-card-image {
+            transform: scale(1.05);
+        }
+        .application-card-content {
+            padding: 1.75rem;
+        }
+        .application-card-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <div class="abstract-shape shape-1" data-speed="0.1"></div>
+    <div class="abstract-shape shape-2" data-speed="-0.05"></div>
+    <div class="abstract-shape shape-3" data-speed="0.08"></div>
+    <div class="abstract-shape shape-4" data-speed="-0.03"></div>
+
+    <header class="sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center px-4 md:px-6 py-4">
+            <a href="https://www.mycountrymobile.com/" class="text-3xl font-extrabold flex items-center text-gradient-blue">
+                MyCountryMobile
+            </a>
+
+            <nav class="hidden md:flex space-x-6">
+                <a href="#features" class="text-slate-600 hover:text-blue-600 font-medium transition duration-300 text-base">Features</a>
+                <a href="#about" class="text-slate-600 hover:text-blue-600 font-medium transition duration-300 text-base">About Us</a>
+                <a href="#benefits" class="text-slate-600 hover:text-blue-600 font-medium transition duration-300 text-base">Benefits</a>
+                <a href="#testimonials" class="text-slate-600 hover:text-blue-600 font-medium transition duration-300 text-base">Testimonials</a>
+                <a href="#faq" class="text-slate-600 hover:text-blue-600 font-medium transition duration-300 text-base">FAQ</a>
+            </nav>
+
+            <a href="https://www.mycountrymobile.com/contact-us/" class="hidden md:block px-6 py-2.5 rounded-full text-white font-semibold btn-gradient-primary text-sm">
+                Get Started
+            </a>
+
+            <button id="mobile-menu-button" class="md:hidden text-slate-600 hover:text-blue-600 focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-40 flex flex-col items-center justify-center space-y-6">
+            <button id="close-mobile-menu" class="absolute top-6 right-6 text-slate-600 hover:text-blue-600 focus:outline-none">
+                <i class="fas fa-times text-3xl"></i>
+            </button>
+            <a href="#features" class="text-slate-700 text-xl font-medium hover:text-blue-600 transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Features</a>
+            <a href="#about" class="text-slate-700 text-xl font-medium hover:text-blue-600 transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">About Us</a>
+            <a href="#benefits" class="text-slate-700 text-xl font-medium hover:text-blue-600 transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Benefits</a>
+            <a href="#testimonials" class="text-slate-700 text-xl font-medium hover:text-blue-600 transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Testimonials</a>
+            <a href="#faq" class="text-slate-700 text-xl font-medium hover:text-blue-600 transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">FAQ</a>
+            <a href="#cta" class="px-8 py-3 rounded-full text-white font-semibold btn-gradient-primary text-lg mt-4" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Get Started</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section text-white pt-24 pb-32 md:pt-32 md:pb-40 overflow-hidden">
+            <div class="container mx-auto text-center px-4 md:px-6 relative z-10">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-fadeInUp">
+                    Transforming Telecom with <br class="md:hidden"/><span class="block md:inline-block text-sky-300">Intelligent AI Solutions</span>
+                </h1>
+                <p class="text-lg md:text-xl mb-10 max-w-3xl mx-auto text-slate-200 animate-fadeInUp delay-200">
+                    Elevate customer engagement, optimize operations, and fuel business growth with My Country Mobile's advanced AI platform.
+                </p>
+                <a href="https://www.mycountrymobile.com/" class="inline-block px-8 py-3.5 rounded-full text-white font-bold text-base btn-gradient-primary animate-fadeInUp delay-400 shadow-lg hover:shadow-xl">
+                    Explore Our Solutions <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+
+                <div class="mt-16 md:mt-20 mx-auto max-w-4xl hero-dashboard-image-container animate-fadeInUp delay-600">
+                    <video src="https://www.mycountrymobile.com/wp-content/uploads/2025/03/My-Country-Mobile-UCaas-Solution.mp4"
+                           alt="My Country Mobile UCaaS Solution Video"
+                           class="hero-dashboard-image"
+                           autoplay
+                           loop
+                           muted
+                           playsinline
+                           poster="https://placehold.co/1000x550/0F172A/93C5FD?text=AI+Analytics+Dashboard&font=inter">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="bg-slate-50">
+            <div class="container mx-auto px-4 md:px-6">
+                <h2 class="section-title text-center">Our Core AI-Powered Features</h2>
+                <p class="section-subtitle text-center">Discover how our cutting-edge technologies can revolutionize your business operations and customer interactions.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                    
+                    <div class="feature-card text-center">
+                        <div class="feature-icon gradient-blue-subtle text-blue-600 mx-auto"><i class="fas fa-cogs"></i></div>
+                        <h3 class="text-xl font-semibold text-slate-800 mb-2">Smart Automation</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Streamline complex workflows and reduce manual tasks with intelligent automation.</p>
+                    </div>
+                    <div class="feature-card text-center">
+                        <div class="feature-icon gradient-blue-subtle text-blue-600 mx-auto"><i class="fas fa-brain"></i></div>
+                        <h3 class="text-xl font-semibold text-slate-800 mb-2">Predictive Analytics</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Leverage data-driven insights to anticipate trends and make proactive decisions.</p>
+                    </div>
+                    <div class="feature-card text-center">
+                        <div class="feature-icon gradient-blue-subtle text-blue-600 mx-auto"><i class="fas fa-comments"></i></div>
+                        <h3 class="text-xl font-semibold text-slate-800 mb-2">Enhanced Engagement</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Personalize customer interactions at scale with AI-driven communication tools.</p>
+                    </div>
+                     <div class="feature-card text-center">
+                        <div class="feature-icon gradient-blue-subtle text-blue-600 mx-auto"><i class="fas fa-shield-alt"></i></div>
+                        <h3 class="text-xl font-semibold text-slate-800 mb-2">Secure Infrastructure</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Robust and reliable platform ensuring data security and operational continuity.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="bg-white">
+            <div class="container mx-auto px-4 md:px-6 flex flex-col lg:flex-row items-center gap-10 md:gap-16">
+                <div class="lg:w-1/2">
+                    <img src="https://a.fsdn.com/con/app/proj/my-country-mobile.s/screenshots/Screenshot%202023-07-16%20at%201.47.26%20PM-fe39a2fc.png/1000/auto/1" alt="My Country Mobile Team and Technology" class="rounded-2xl shadow-xl w-full h-auto object-cover">
+                </div>
+                <div class="lg:w-1/2 text-center lg:text-left">
+                    <h2 class="text-3xl md:text-4xl font-bold text-blue-700 mb-6">About My Country Mobile</h2>
+                    <p class="text-lg text-slate-700 leading-relaxed mb-4">
+                        My Country Mobile is dedicated to pioneering the future of telecommunications through advanced Artificial Intelligence. Our mission is to empower businesses with intelligent tools that drive efficiency, foster innovation, and create exceptional customer experiences.
+                    </p>
+                    <p class="text-lg text-slate-700 leading-relaxed mb-6">
+                        With a team of passionate technologists and telecom experts, we build scalable, secure, and intuitive solutions tailored to the evolving needs of the industry. We believe in the transformative power of AI to unlock new possibilities for growth and operational excellence.
+                    </p>
+                    <a href="https://www.mycountrymobile.com/about-us/" class="btn-gradient-primary text-white font-semibold py-3 px-6 rounded-lg inline-flex items-center">
+                        Learn More About Us <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="benefits" class="bg-slate-50">
+            <div class="container mx-auto px-4 md:px-6">
+                <h2 class="section-title text-center">Unlock Your Business Potential</h2>
+                 <p class="section-subtitle text-center">Experience tangible benefits that drive growth, efficiency, and customer satisfaction.</p>
+
+                <div class="space-y-12 md:space-y-16">
+                    <div class="flex flex-col lg:flex-row items-center gap-8 md:gap-12">
+                        <div class="lg:w-1/2 text-center lg:text-left">
+                            <span class="inline-block py-1 px-3 rounded-full text-xs font-semibold text-blue-700 bg-blue-100 mb-3">Efficiency Boost</span>
+                            <h3 class="text-2xl md:text-3xl font-bold text-slate-800 mb-4">Streamline Operations with AI</h3>
+                            <p class="text-lg text-slate-600 leading-relaxed">
+                                Automate repetitive tasks, optimize resource allocation, and reduce operational overhead. Our AI algorithms analyze workflows to identify bottlenecks and opportunities for improvement, freeing up your team to focus on strategic initiatives.
+                            </p>
+                        </div>
+                        <div class="lg:w-1/2">
+                            <img src="https://www.mycountrymobile.com/wp-content/uploads/Brief-overview-of-MyCountryMobile.png" alt="Streamlined Operations" class="rounded-2xl shadow-lg w-full h-auto object-cover">
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col lg:flex-row-reverse items-center gap-8 md:gap-12">
+                        <div class="lg:w-1/2 text-center lg:text-left">
+                             <span class="inline-block py-1 px-3 rounded-full text-xs font-semibold text-indigo-700 bg-indigo-100 mb-3">Customer Focus</span>
+                            <h3 class="text-2xl md:text-3xl font-bold text-slate-800 mb-4">Elevate Customer Engagement</h3>
+                            <p class="text-lg text-slate-600 leading-relaxed">
+                                Deliver personalized experiences and proactive support. AI-powered chatbots, sentiment analysis, and recommendation engines help you understand and anticipate customer needs, fostering loyalty and satisfaction.
+                            </p>
+                        </div>
+                        <div class="lg:w-1/2">
+                            <img src="https://www.mycountrymobile.com/wp-content/uploads/11-1-61.jpg" alt="Customer Engagement" class="rounded-2xl shadow-lg w-full h-auto object-cover">
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col lg:flex-row items-center gap-8 md:gap-12">
+                        <div class="lg:w-1/2 text-center lg:text-left">
+                            <span class="inline-block py-1 px-3 rounded-full text-xs font-semibold text-sky-700 bg-sky-100 mb-3">Growth Engine</span>
+                            <h3 class="text-2xl md:text-3xl font-bold text-slate-800 mb-4">Drive Data-Driven Growth</h3>
+                            <p class="text-lg text-slate-600 leading-relaxed">
+                                Make informed decisions with actionable insights from complex data sets. Our AI analytics uncover hidden patterns, predict market shifts, and identify new revenue opportunities, empowering strategic expansion.
+                            </p>
+                        </div>
+                        <div class="lg:w-1/2">
+                            <img src="https://www.teloz.com/wp-content/uploads/2023/08/boost-your-singapore-business-with-a-virtual-phone-number-1.png" alt="Data-Driven Growth" class="rounded-2xl shadow-lg w-full h-auto object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="bg-white">
+            <div class="container mx-auto px-4 md:px-6">
+                <h2 class="section-title text-center">How Our AI Works</h2>
+                <p class="section-subtitle text-center">We harness the power of sophisticated AI technologies to deliver intelligent, automated, and predictive solutions for the telecom industry.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="tech-pillar-card text-center animate-fadeInUp delay-200">
+                        <div class="tech-pillar-icon-container gradient-blue-subtle text-blue-600 mx-auto">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3">Machine Learning</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Our ML algorithms learn from vast datasets to identify patterns, predict outcomes, and automate complex decision-making processes, optimizing network performance and personalizing user experiences.</p>
+                    </div>
+                    <div class="tech-pillar-card text-center animate-fadeInUp delay-400">
+                        <div class="tech-pillar-icon-container gradient-blue-subtle text-indigo-600 mx-auto">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3">Natural Language Processing</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">NLP enables intelligent chatbots, sentiment analysis, and automated summarization of customer interactions, leading to enhanced support and deeper understanding of customer needs.</p>
+                    </div>
+                    <div class="tech-pillar-card text-center animate-fadeInUp delay-600">
+                        <div class="tech-pillar-icon-container gradient-blue-subtle text-sky-600 mx-auto">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3">Big Data & Analytics</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">We process and analyze massive volumes of telecom data in real-time to provide actionable insights, enabling proactive maintenance, fraud detection, and targeted marketing strategies.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="applications" class="bg-slate-50">
+            <div class="container mx-auto px-4 md:px-6">
+                <h2 class="section-title text-center">Real-World Applications</h2>
+                <p class="section-subtitle text-center">See how My Country Mobile's AI solutions are practically applied to solve key challenges and create value across the telecom sector.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="application-card animate-fadeInUp delay-200">
+                        <img src="https://www.verloop.io/wp-content/uploads/How-to-improve-customer-service-with-chatbots.png" alt="AI for Network Optimization" class="application-card-image">
+                        <div class="application-card-content">
+                            <span class="application-card-tag bg-blue-100 text-blue-700">Operations</span>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">AI-Driven Network Optimization</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">Proactively manage network traffic, predict equipment failures, and optimize resource allocation for enhanced performance and reduced downtime.</p>
+                        </div>
+                    </div>
+                    <div class="application-card animate-fadeInUp delay-400">
+                        <img src="https://th.bing.com/th/id/OIP.SrEynTbCc_Qbk4Q3jjSvIQHaE1?cb=iwc2&rs=1&pid=ImgDetMain" alt="Intelligent Customer Support" class="application-card-image">
+                        <div class="application-card-content">
+                             <span class="application-card-tag bg-indigo-100 text-indigo-700">Customer Experience</span>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Intelligent Customer Support</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">Deploy AI chatbots for 24/7 support, automate ticket routing, and provide agents with real-time insights for faster, more personalized resolutions.</p>
+                        </div>
+                    </div>
+                    <div class="application-card animate-fadeInUp delay-600">
+                        <img src="https://th.bing.com/th/id/OIP.AxssAVXlmURGQOAFPqRiFwHaEf?cb=iwc2&w=1200&h=728&rs=1&pid=ImgDetMain" alt="Proactive Fraud Prevention" class="application-card-image">
+                        <div class="application-card-content">
+                            <span class="application-card-tag bg-sky-100 text-sky-700">Security</span>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Proactive Fraud Prevention</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">Utilize machine learning to detect and prevent fraudulent activities in real-time, protecting revenue and maintaining customer trust.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="bg-white overflow-hidden">
+            <div class="container mx-auto px-4 md:px-6 text-center">
+                <h2 class="section-title">Trusted by Industry Leaders</h2>
+                <p class="section-subtitle">Hear what our clients have to say about the transformative impact of My Country Mobile.</p>
+            </div>
+            <div class="testimonial-carousel-container relative py-8 mt-8">
+                <div class="testimonial-track">
+                    <div class="testimonial-card">
+                        <p class="text-slate-700 italic mb-4 text-base leading-relaxed">"My Country Mobile's AI has revolutionized our customer service, providing insights we never had before. A true game-changer!"</p>
+                        <div class="font-semibold text-blue-700">- Alex Chen, CEO of InnovateCom</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="text-slate-700 italic mb-4 text-base leading-relaxed">"Their VoIP and Bulk SMS solutions are incredibly reliable and have significantly streamlined our communication overhead."</p>
+                        <div class="font-semibold text-blue-700">- Maria Rodriguez, Ops Manager at ConnectLink</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="text-slate-700 italic mb-4 text-base leading-relaxed">"The predictive analytics from MCM helped us to proactively adjust our strategy, leading to a 20% increase in customer retention."</p>
+                        <div class="font-semibold text-blue-700">- David Miller, Marketing Head at FutureTelco</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="text-slate-700 italic mb-4 text-base leading-relaxed">"Seamless integration and robust features. My Country Mobile feels like a genuine partner in our technological advancement."</p>
+                        <div class="font-semibold text-blue-700">- Sarah Lee, CTO of Apex Solutions</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="text-slate-700 italic mb-4 text-base leading-relaxed">"Expanding globally was made effortless with their virtual number services. Top-notch quality and support!"</p>
+                        <div class="font-semibold text-blue-700">- Ben Carter, Founder of GlobeConnect</div>
+                    </div>
+                     <div class="testimonial-card">
+                        <p class="text-slate-700 italic mb-4 text-base leading-relaxed">"My Country Mobile's AI has revolutionized our customer service, providing insights we never had before. A true game-changer!"</p>
+                        <div class="font-semibold text-blue-700">- Alex Chen, CEO of InnovateCom</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="text-slate-700 italic mb-4 text-base leading-relaxed">"Their VoIP and Bulk SMS solutions are incredibly reliable and have significantly streamlined our communication overhead."</p>
+                        <div class="font-semibold text-blue-700">- Maria Rodriguez, Ops Manager at ConnectLink</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="text-slate-700 italic mb-4 text-base leading-relaxed">"The predictive analytics from MCM helped us to proactively adjust our strategy, leading to a 20% increase in customer retention."</p>
+                        <div class="font-semibold text-blue-700">- David Miller, Marketing Head at FutureTelco</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="text-slate-700 italic mb-4 text-base leading-relaxed">"Seamless integration and robust features. My Country Mobile feels like a genuine partner in our technological advancement."</p>
+                        <div class="font-semibold text-blue-700">- Sarah Lee, CTO of Apex Solutions</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="text-slate-700 italic mb-4 text-base leading-relaxed">"Expanding globally was made effortless with their virtual number services. Top-notch quality and support!"</p>
+                        <div class="font-semibold text-blue-700">- Ben Carter, Founder of GlobeConnect</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta" class="gradient-blue-secondary text-white text-center">
+            <div class="container mx-auto px-4 md:px-6">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6 leading-tight">
+                    Ready to Elevate Your Telecom Business?
+                </h2>
+                <p class="text-lg md:text-xl mb-10 max-w-3xl mx-auto text-slate-200">
+                    Discover how My Country Mobile's AI-driven solutions can provide a competitive edge. Let's build the future of telecom, together.
+                </p>
+                <a href="https://www.mycountrymobile.com/contact-us/" class="inline-block px-10 py-4 rounded-lg text-slate-800 bg-white hover:bg-slate-100 font-bold text-lg shadow-xl transition duration-300 transform hover:scale-105">
+                    Request a Demo <i class="fas fa-play-circle ml-2"></i>
+                </a>
+            </div>
+        </section>
+
+        <section id="faq" class="bg-slate-50">
+            <div class="container mx-auto px-4 md:px-6">
+                <h2 class="section-title text-center">Frequently Asked Questions</h2>
+                <div class="max-w-3xl mx-auto">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>What types of AI does My Country Mobile use?</span>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>We leverage a range of AI technologies including Machine Learning (ML) for predictive analytics, Natural Language Processing (NLP) for chatbots and sentiment analysis, and Deep Learning for complex pattern recognition in network optimization and fraud detection.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>How secure are your AI solutions?</span>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Security is paramount. Our platform is built with industry-leading security protocols, data encryption, and regular audits to ensure your data and operations are protected. We comply with relevant data privacy regulations.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>Can your solutions integrate with our existing systems?</span>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Yes, our solutions are designed for flexibility and seamless integration. We offer robust APIs and work closely with your team to ensure smooth integration with your current telecom infrastructure and software.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>What kind of support do you offer?</span>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>We provide comprehensive support including dedicated account managers, 24/7 technical assistance, detailed documentation, and training sessions to ensure you maximize the benefits of our AI solutions.</p>
+                        </div>
+                    </div>
+                     <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>What's the process to get started?</span>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Getting started is easy! Contact us to schedule a free consultation and demo. We'll discuss your specific needs, demonstrate how our solutions can help, and outline a tailored implementation plan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="pt-16 pb-8">
+        <div class="container mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-8 pb-10">
+            <div>
+                <h3 class="text-2xl font-bold text-white mb-4">MyCountryMobile</h3>
+                <p class="text-sm leading-relaxed mb-6">
+                    Pioneering AI-driven solutions for the modern telecommunications landscape. We empower businesses to achieve operational excellence and superior customer engagement.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="https://www.facebook.com/mycountrymobile" class="text-slate-400 hover:text-white transition duration-300 text-lg"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/mcmuae" class="text-slate-400 hover:text-white transition duration-300 text-lg"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/company/my-country-mobile" class="text-slate-400 hover:text-white transition duration-300 text-lg"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.youtube.com/c/MyCountryMobile" class="text-slate-400 hover:text-white transition duration-300 text-lg"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-lg font-semibold footer-title mb-5">Solutions</h3>
+                <ul class="space-y-3">
+                    <li><a href="https://www.mycountrymobile.com/wholesale-voip/" class="text-sm hover:text-white transition duration-300">Wholesale VoIP</a></li>
+                    <li><a href="https://www.mycountrymobile.com/wholesale-voice/" class="text-sm hover:text-white transition duration-300">Wholesale Voice</a></li>
+                    <li><a href="https://www.mycountrymobile.com/virtual-phone-number/" class="text-sm hover:text-white transition duration-300">virtual Phone Numbers</a></li>
+                    <li><a href="https://www.mycountrymobile.com/tools/phone-number-generator/" class="text-sm hover:text-white transition duration-300">Phone Number Generator</a></li>
+                    <li><a href="https://www.mycountrymobile.com/business-phone-system/" class="text-sm hover:text-white transition duration-300">Business Phone Systems</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-lg font-semibold footer-title mb-5">Company</h3>
+                <ul class="space-y-3">
+                    <li><a href="https://www.mycountrymobile.com/about-us/" class="text-sm hover:text-white transition duration-300">About Us</a></li>
+                    <li><a href="https://www.mycountrymobile.com/blogs/" class="text-sm hover:text-white transition duration-300">Blogs</a></li>
+                    <li><a href="https://www.mycountrymobile.com/features/call-forwarding/" class="text-sm hover:text-white transition duration-300">Call Forwarding</a></li>
+                    <li><a href="https://www.mycountrymobile.com/contact-us/" class="text-sm hover:text-white transition duration-300">Contact Support</a></li>
+                    <li><a href="https://www.mycountrymobile.com/tools/" class="text-sm hover:text-white transition duration-300">Tools</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-lg font-semibold footer-title mb-5">Get In Touch</h3>
+                <p class="text-sm mb-3 flex items-start"><i class="fas fa-map-marker-alt mr-3 mt-1 text-blue-400"></i> Dubai, UAE: My Country Mobile DUBAI, UAE, 127898</p>
+                <p class="text-sm mb-3 flex items-center"><i class="fas fa-phone mr-3 text-blue-400"></i>+1 917 920 7969</p>
+                <p class="text-sm mb-3 flex items-center"><i class="fas fa-envelope mr-3 text-blue-400"></i> info@mycountrymobile.com</p>
+                <a href="https://www.mycountrymobile.com/contact-us/" class="inline-block mt-3 px-5 py-2.5 rounded-md text-white text-sm font-medium btn-gradient-primary">
+                    Schedule a Demo
+                </a>
+            </div>
+        </div>
+        <div class="border-t border-slate-700 mt-8 pt-8 text-center text-xs text-slate-500">
+            &copy; <script>document.write(new Date().getFullYear())</script> My Country Mobile. All Rights Reserved. AI for a Connected Future.
+            <div class="mt-2">
+                <a href="https://www.mycountrymobile.com/pricing-and-plan/" class="hover:text-slate-300 transition">Privacy Policy</a> | <a href="https://www.mycountrymobile.com/terms-and-conditions/" class="hover:text-slate-300 transition">Terms of Service</a>
+            </div>
+            <div class="mt-2">Develop and Design by Rohit Varma</div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Mobile Menu
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+        mobileMenuButton.addEventListener('click', () => mobileMenu.classList.remove('hidden'));
+        closeMobileMenuButton.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // Accordion
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const accordionItem = header.closest('.accordion-item');
+                const currentlyActive = document.querySelector('.accordion-item.active');
+                if (currentlyActive && currentlyActive !== accordionItem) {
+                    currentlyActive.classList.remove('active');
+                }
+                accordionItem.classList.toggle('active');
+            });
+        });
+
+        // Subtle Parallax for Abstract Shapes (Fixed Position)
+        const shapes = document.querySelectorAll('.abstract-shape');
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            shapes.forEach(shape => {
+                const speed = parseFloat(shape.dataset.speed) || 0.1;
+                shape.style.transform = `translateY(${scrollY * speed}px)`;
+            });
+        });
+
+        // Animation on scroll for new sections (simple version)
+        // More robust would use Intersection Observer
+        const animatedElements = document.querySelectorAll('.animate-fadeInUp');
+        
+        function checkVisibility() {
+            animatedElements.forEach(element => {
+                // Check if element has already been animated to avoid re-triggering constantly
+                if (element.style.opacity === "1") return;
+
+                const rect = element.getBoundingClientRect();
+                const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+                if (rect.top <= windowHeight * 0.85) { // Trigger when 85% of the element is visible
+                    // Element is in viewport, apply animation by setting opacity to 1 (animation defined in CSS)
+                    // The 'animate-fadeInUp' class itself applies the animation,
+                    // but we trigger it by making it visible or by adding a class.
+                    // For this setup, the animation starts when the element is parsed if 'opacity:0' is set.
+                    // To trigger on scroll, we'd ideally add the animation class here.
+                    // However, since 'animate-fadeInUp' has 'forwards', it stays at 'opacity:1'.
+                    // The initial 'opacity:0' on the card classes will allow the animation.
+                    // A simple way to make sure it triggers now by re-setting opacity:
+                    element.style.opacity = '1';
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkVisibility);
+        window.addEventListener('load', checkVisibility); // Check on load for elements already in view
+        // Initial check in case elements are already in view
+        document.addEventListener('DOMContentLoaded', checkVisibility);
+
+
+    </script>
+</body>
+</html>
