@@ -1,0 +1,49 @@
+{
+    "name": "mycountrymobile/app",
+    "description": "Core application for My Country Mobile - AI-Powered Telecom Solutions.",
+    "type": "project",
+    "license": "MIT",
+    "homepage": "https://www.mycountrymobile.com/",
+    "authors": [
+        {
+            "name": "Ariyan Khan",
+            "email": "ariyan@mycountrymobile.com"
+        }
+    ],
+    "support": {
+        "email": "info@mycountrymobile.com",
+        "source": "https://github.com/Mycountrymobile-com/MyCountryMobile/"
+    },
+    "config": {
+        "platform": {
+            "php": "8.1"
+        },
+        "sort-packages": true
+    },
+    "require": {
+        "php": "^8.1",
+        "vlucas/phpdotenv": "^5.5",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "MyCountryMobile\\App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MyCountryMobile\\App\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "test": "phpunit"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
